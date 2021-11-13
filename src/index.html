@@ -27,27 +27,35 @@
         <!-- Contenu du modal -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Tenetur ratione officia quis distinctio modi necessitatibus debitis nesciunt? Tempore, recusandae esse. Itaque, 
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Tenetur ratione officia quis distinctio modi necessitatibus debitis nesciunt? Tempore, recusandae esse.
+                Itaque,
                 quas! Libero voluptate modi sint ad nisi, fugit atque!</p>
         </div>
 
     </div>
 
     <div class="start-div">
-        <h2 id="game-status">Statut</h2>
-        <h3 id="game-score">Score:</h3>
+        <h2 id="game-status">Statut: </h2>
+        <h3 id="game-score-btn-ok">Cliques validés:</h3>
+        <h3 id="game-score-level-ok">Tours validés:</h3>
         <button class="start-game">Start</button>
         <button class="restart-game">Relancer</button>
     </div>
 
     <div class="game-div">
-        <button class="color-btn green-btn">Vert</button>
-        <button class="color-btn red-btn">Rouge</button>
-        <button class="color-btn blue-btn">Bleu</button>
-        <button class="color-btn yellow-btn">Jaune</button>
-    </div>
+        <div id="ligne1" class="game-div-line">
+            <button class="color-btn green-btn" data-sound="C4"></button>
+            <button class="color-btn red-btn" data-sound="D4"></button>
+        </div>
+        <div id="ligne2"  class="game-div-line">
+            <button class="color-btn yellow-btn" data-sound="F4" ></button>
+            <button class="color-btn blue-btn" data-sound="E4"></button>
+        </div>
 
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js"></script>
     <script src="js/main.js"></script>
     <script src="js/modal.js"></script>
 </body>
