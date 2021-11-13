@@ -1,0 +1,47 @@
+#game-title {
+    text-align: center;
+}
+.start-div {
+    margin-bottom: 50px;
+}
+
+#game-rules {
+    float: right;
+    background: none;
+    border: none;
+}
+#game-rules:hover {
+    cursor: pointer;
+    color: green;
+}
+
+/* CSS du modal*/
+
+.modal {
+    display: none; 
+    left: 0;
+    top: 0;
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.4);
+}
+  
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px; 
+    width: 60%;
+}
+  
+.close {
+    color: black;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+  
+.close:hover {
+    color: red;
+    cursor: pointer;
+}
