@@ -26,22 +26,23 @@ let interval = 400;
 const btnInGame = document.querySelectorAll(".color-btn");
 const startBtn = document.querySelector('.start-game-btn');
 
+const gameStatus = document.getElementById('game-status');
+
 const clicksOk = document.getElementById('game-score-btn-ok');
 const levelOk = document.getElementById('game-score-level-ok');
 
 const startDiv = document.querySelector('.start-div');
 
-const startGame = false;
-
 startBtn.addEventListener('click', () => {
     startBtn.style.display = 'none';
     startDiv.style.display = 'block';
+    gameStatus.innerHTML = 'Status: Écoutes et regardes';
     addColorBtnToArrayOfColorSeries()
     playColorSeries(1000)
     clicksOk.innerHTML = 'Cliques validés: 0 / ' + colorSeries.length;
     btnInGame.forEach((element) => {
         element.disabled = false;
-    })
+    });
 })
 
 
@@ -67,8 +68,8 @@ btnInGame.forEach(element => {
                 setTimeout(() => {
                     clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClicked + ' / ' + (colorSeries.length + 1);
                     gameBot();
-                },1000)
-                
+                }, 1000)
+
                 levelOk.innerHTML = 'Tours validés: ' + level;
 
             }
@@ -111,18 +112,25 @@ function playClick(color) {
 }
 
 function playColorSeries(delay = 500) {
+    gameStatus.innerHTML = 'Status: Écoutes et regardes';
     setTimeout(() => {
         colorSeries.forEach((obj, index) => {
-            const delay = index * (soundTime + interval);
-            playSoundInColorSeries(obj.musicNote, obj.color, delay)
+            const delayP = index * (soundTime + interval);
+            playSoundInColorSeries(obj.musicNote, obj.color, delayP, index);
         })
     }, delay)
+    
 }
 
-function playSoundInColorSeries(musicNote, color, delay) {
+function playSoundInColorSeries(musicNote, color, delay, index) {
     setTimeout(() => {
         playClick(color);
         playSound(musicNote);
+        if((index + 1) === colorSeries.length){
+            setTimeout(() => {
+                gameStatus.innerHTML = 'Status: À toi de jouer !';
+            },1000)
+        }
     }, delay)
 
 }
