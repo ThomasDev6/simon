@@ -42,7 +42,8 @@
 
     <div class="start-div">
         <h2 id="game-status">Statut: </h2>
-        <h3 id="game-score-btn-ok">Cliques validés: 0</h3>
+        <h3 id="game-total-score-btn-ok">Total clics validés: 0</h3>
+        <h3 id="game-score-btn-ok">Clics validés: 0</h3>
         <h3 id="game-score-level-ok">Tours validés: 0</h3>
 
         <button class="restart-game">Reset</button>
@@ -50,12 +51,12 @@
 
     <div class="game-div">
         <div id="ligne1" class="game-div-line">
-            <button class="color-btn green-btn" data-musicNote="C4" data-color="green" disabled="true"></button>
-            <button class="color-btn red-btn" data-musicNote="D4" data-color="red" disabled="true"></button>
+            <button class="color-btn green-btn" data-musicNote="C4" data-color="green" disabled="true">DO</button>
+            <button class="color-btn red-btn" data-musicNote="D4" data-color="red" disabled="true">RE</button>
         </div>
         <div id="ligne2" class="game-div-line">
-            <button class="color-btn yellow-btn" data-musicNote="F4" data-color="yellow" disabled="true"></button>
-            <button class="color-btn blue-btn" data-musicNote="E4" data-color="blue" disabled="true"></button>
+            <button class="color-btn yellow-btn" data-musicNote="F4" data-color="yellow" disabled="true">MI</button>
+            <button class="color-btn blue-btn" data-musicNote="E4" data-color="blue" disabled="true">FA</button>
         </div>
 
     </div>
@@ -69,7 +70,12 @@
                 <h2>GAME OVER !</h2>
             </div>
             <div class="modal-body" id="content-game-over">
-                
+                <div id="game-over-score">
+
+                </div>
+                <div class="div-restart-btn-game-over">
+                    <button class="btn-restart-game-over restart-game">Relancer une partie</button>
+                </div>
             </div>
         </div>
 

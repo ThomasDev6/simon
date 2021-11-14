@@ -18,18 +18,21 @@ const colorBtns = [
     }
 ]
 
-const colorSeries = [];
+let colorSeries = [];
 
 const soundTime = 300;
-let interval = 400;
+const intervalDefine = 400
+let interval = intervalDefine;
 
 const btnInGame = document.querySelectorAll(".color-btn");
 const startBtn = document.querySelector('.start-game-btn');
+const restartBtn = document.querySelectorAll('.restart-game');
 
 const gameStatus = document.getElementById('game-status');
 
 const clicksOk = document.getElementById('game-score-btn-ok');
 const levelOk = document.getElementById('game-score-level-ok');
+const totalClickOk = document.getElementById('game-total-score-btn-ok');
 
 const startDiv = document.querySelector('.start-div');
 
@@ -39,20 +42,21 @@ startBtn.addEventListener('click', () => {
     gameStatus.innerHTML = 'Status: Écoutes et regardes';
     addColorBtnToArrayOfColorSeries()
     playColorSeries(1000)
-    clicksOk.innerHTML = 'Cliques validés: 0 / ' + colorSeries.length;
-    btnInGame.forEach((element) => {
-        element.disabled = false;
-    });
+    clicksOk.innerHTML = 'Clics validés: 0 / ' + colorSeries.length;
+    disabledColorBtn(false)
 })
 
-
+let nbTotalClickOk = 0;
 let nbBtnClickedOk = 0;
 let level = 0;
 
 // A chaque clique sur un bouton de couleur, une note est joué 
 const gameOverModal = document.getElementById('game-over-modal');
 const closeGameOverModal = document.getElementById('close-game-over');
-const contentModalGameOver = document.getElementById('content-game-over');
+const gameOverScore = document.getElementById('game-over-score');
+const h2TotalLevel = document.createElement("h2");
+const h2TotalClics = document.createElement("h2");
+
 btnInGame.forEach(element => {
     element.addEventListener('click', (e) => {
         // On joue la note en fonction de la data attributes du bouton
@@ -62,13 +66,16 @@ btnInGame.forEach(element => {
 
         if (btnColor === colorSeries[nbBtnClickedOk].color) {
             nbBtnClickedOk++;
-            clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClickedOk + ' / ' + colorSeries.length;
+            nbTotalClickOk++;
+            clicksOk.innerHTML = 'Clics validés: ' + nbBtnClickedOk + ' / ' + colorSeries.length;
+            totalClickOk.innerHTML = 'Total clics validés: ' + nbTotalClickOk;
 
             if (colorSeries.length === nbBtnClickedOk) {
                 level++;
                 nbBtnClickedOk = 0;
                 setTimeout(() => {
-                    clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClickedOk + ' / ' + (colorSeries.length + 1);
+                    clicksOk.innerHTML = 'Clics validés: ' + nbBtnClickedOk + ' / ' + (colorSeries.length + 1);
+                    totalClickOk.innerHTML = 'Total clics validés: ' + nbTotalClickOk;
                     gameBot();
                 }, 1000)
 
@@ -77,21 +84,59 @@ btnInGame.forEach(element => {
             }
         }
         else {
+            disabledColorBtn(true);
             gameOverModal.style.display = 'block';
 
             closeGameOverModal.onclick = () => {
                 gameOverModal.style.display = 'none';
             };
 
-            const h1 = document.createElement("h2");
-            const btnRestart = document.createElement("button");
-            btnRestart.setAttribute()
-            h1.innerHTML = `Vous avez fait un total de ${level} tour(s) valide(s)`;
-            contentModalGameOver.appendChild(h1);
+            h2TotalClics.innerHTML = `Vous avez fait un total de ${nbTotalClickOk} de clic(s) valide(s)`
+            h2TotalLevel.innerHTML = `Vous avez fait un total de ${level} tour(s) valide(s)`;
+            gameOverScore.appendChild(h2TotalLevel)
+            gameOverScore.appendChild(h2TotalClics);
 
         }
     })
 });
+
+restartBtn.forEach((element) => {
+    element.addEventListener('click', (e) => {
+        restartGame();
+        gameOverModal.style.display = 'none';
+    });
+});
+
+
+function restartGame() {
+    nbTotalClickOk = 0;
+    nbBtnClickedOk = 0;
+    level = 0;
+    colorSeries = [];
+    interval = intervalDefine;
+    h2TotalClics.remove();
+    h2TotalLevel.remove();
+
+    totalClickOk.innerHTML = 'Total clics validés: ' + nbTotalClickOk;
+    levelOk.innerHTML = 'Tours validés: ' + level;
+
+    gameStatus.innerHTML = 'Status: Attend 2 secondes...';
+    addColorBtnToArrayOfColorSeries()
+
+    setTimeout(() => {
+
+        playColorSeries()
+    }, 2000)
+
+    clicksOk.innerHTML = 'Clics validés: 0 / ' + colorSeries.length;
+    disabledColorBtn(false);
+}
+
+function disabledColorBtn(bool) {
+    btnInGame.forEach((element) => {
+        element.disabled = bool;
+    });
+};
 
 function gameBot() {
 
@@ -129,6 +174,7 @@ function playClick(color) {
 
 function playColorSeries(delay = 500) {
     gameStatus.innerHTML = 'Status: Écoutes et regardes';
+    disabledColorBtn(true);
     setTimeout(() => {
         colorSeries.forEach((obj, index) => {
             const delayP = index * (soundTime + interval);
@@ -145,6 +191,7 @@ function playSoundInColorSeries(musicNote, color, delay, index) {
         if ((index + 1) === colorSeries.length) {
             setTimeout(() => {
                 gameStatus.innerHTML = 'Status: À toi de jouer !';
+                disabledColorBtn(false)
             }, 1000)
         }
     }, delay)
