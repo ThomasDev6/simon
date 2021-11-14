@@ -46,11 +46,13 @@ startBtn.addEventListener('click', () => {
 })
 
 
-let nbBtnClicked = 0;
+let nbBtnClickedOk = 0;
 let level = 0;
 
 // A chaque clique sur un bouton de couleur, une note est joué 
-
+const gameOverModal = document.getElementById('game-over-modal');
+const closeGameOverModal = document.getElementById('close-game-over');
+const contentModalGameOver = document.getElementById('content-game-over');
 btnInGame.forEach(element => {
     element.addEventListener('click', (e) => {
         // On joue la note en fonction de la data attributes du bouton
@@ -58,21 +60,35 @@ btnInGame.forEach(element => {
         playClick(e.target.dataset.color);
         const btnColor = e.target.dataset.color;
 
-        if (btnColor === colorSeries[nbBtnClicked].color) {
-            nbBtnClicked++;
-            clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClicked + ' / ' + colorSeries.length;
+        if (btnColor === colorSeries[nbBtnClickedOk].color) {
+            nbBtnClickedOk++;
+            clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClickedOk + ' / ' + colorSeries.length;
 
-            if (colorSeries.length === nbBtnClicked) {
+            if (colorSeries.length === nbBtnClickedOk) {
                 level++;
-                nbBtnClicked = 0;
+                nbBtnClickedOk = 0;
                 setTimeout(() => {
-                    clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClicked + ' / ' + (colorSeries.length + 1);
+                    clicksOk.innerHTML = 'Cliques validés: ' + nbBtnClickedOk + ' / ' + (colorSeries.length + 1);
                     gameBot();
                 }, 1000)
 
                 levelOk.innerHTML = 'Tours validés: ' + level;
 
             }
+        }
+        else {
+            gameOverModal.style.display = 'block';
+
+            closeGameOverModal.onclick = () => {
+                gameOverModal.style.display = 'none';
+            };
+
+            const h1 = document.createElement("h2");
+            const btnRestart = document.createElement("button");
+            btnRestart.setAttribute()
+            h1.innerHTML = `Vous avez fait un total de ${level} tour(s) valide(s)`;
+            contentModalGameOver.appendChild(h1);
+
         }
     })
 });
@@ -119,17 +135,17 @@ function playColorSeries(delay = 500) {
             playSoundInColorSeries(obj.musicNote, obj.color, delayP, index);
         })
     }, delay)
-    
+
 }
 
 function playSoundInColorSeries(musicNote, color, delay, index) {
     setTimeout(() => {
         playClick(color);
         playSound(musicNote);
-        if((index + 1) === colorSeries.length){
+        if ((index + 1) === colorSeries.length) {
             setTimeout(() => {
                 gameStatus.innerHTML = 'Status: À toi de jouer !';
-            },1000)
+            }, 1000)
         }
     }, delay)
 

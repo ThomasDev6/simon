@@ -5,7 +5,7 @@ const modal = document.getElementById("game-rules-modal");
 const openModalBtn = document.getElementById("game-rules");
 
 // on récupère le btn pour close le modal
-const closeBtn = document.getElementsByClassName("close")[0];
+const closeBtn = document.getElementById('close-rules');
 
 // Lorsque l'on clique sur le btn des règles on ouvre le modal
 openModalBtn.onclick = () => {

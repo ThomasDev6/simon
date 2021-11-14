@@ -26,7 +26,7 @@
 
         <!-- Contenu du modal -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="close-rules">&times;</span>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Tenetur ratione officia quis distinctio modi necessitatibus debitis nesciunt? Tempore, recusandae esse.
                 Itaque,
@@ -38,30 +38,45 @@
         <button class="start-game-btn">Start</button>
     </div>
 
-    
+
 
     <div class="start-div">
         <h2 id="game-status">Statut: </h2>
         <h3 id="game-score-btn-ok">Cliques validés: 0</h3>
         <h3 id="game-score-level-ok">Tours validés: 0</h3>
-        
+
         <button class="restart-game">Reset</button>
     </div>
 
     <div class="game-div">
         <div id="ligne1" class="game-div-line">
             <button class="color-btn green-btn" data-musicNote="C4" data-color="green" disabled="true"></button>
-            <button class="color-btn red-btn" data-musicNote="D4"  data-color="red" disabled="true"></button>
+            <button class="color-btn red-btn" data-musicNote="D4" data-color="red" disabled="true"></button>
         </div>
-        <div id="ligne2"  class="game-div-line">
-            <button class="color-btn yellow-btn" data-musicNote="F4"  data-color="yellow" disabled="true"></button>
-            <button class="color-btn blue-btn" data-musicNote="E4"  data-color="blue" disabled="true"></button>
+        <div id="ligne2" class="game-div-line">
+            <button class="color-btn yellow-btn" data-musicNote="F4" data-color="yellow" disabled="true"></button>
+            <button class="color-btn blue-btn" data-musicNote="E4" data-color="blue" disabled="true"></button>
+        </div>
+
+    </div>
+    <!-- Modal GameOver -->
+    <div id="game-over-modal" class="modal">
+
+        <!-- Contenu du modal -->
+        <div class="modal-content" >
+            <div class="modal-header">
+                <span class="close" id="close-game-over">&times;</span>
+                <h2>GAME OVER !</h2>
+            </div>
+            <div class="modal-body" id="content-game-over">
+                
+            </div>
         </div>
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/modal.js"></script>
+    <script src="js/modalRules.js"></script>
 </body>
 
 </html>
