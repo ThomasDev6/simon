@@ -19,7 +19,7 @@ closeBtn.onclick = () => {
 
 // Lorsque l'on clique n'importe où hors du modal, on le ferme
 window.onclick = (e) => {
-    if (e.target == modal) {
+    if (e.target === modal) {
         modal.style.display = "none";
     }
 }
