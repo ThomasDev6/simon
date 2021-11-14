@@ -26,11 +26,16 @@
 
         <!-- Contenu du modal -->
         <div class="modal-content">
-            <span class="close" id="close-rules">&times;</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Tenetur ratione officia quis distinctio modi necessitatibus debitis nesciunt? Tempore, recusandae esse.
-                Itaque,
-                quas! Libero voluptate modi sint ad nisi, fugit atque!</p>
+            <div>
+                <span class="close" id="close-rules">&times;</span>
+                <h2>Règles du jeu Simon</h2>
+            </div>
+            <p>Le but du jeu est de répéter la suite de couleurs et de sons générée par l'ordinateur. <br>
+                Le statut du jeu vous permet de savoir lorsque c'est au joueur de jouer. <br>
+                La moindre erreur dans la suite du joueur engendre un GameOver. <br>
+                <br>
+                Votre objectif est de suivre la suite le plus longtemps possible.
+            </p>
         </div>
 
     </div>
@@ -41,12 +46,15 @@
 
 
     <div class="start-div">
-        <h2 id="game-status">Statut: </h2>
-        <h3 id="game-total-score-btn-ok">Total clics validés: 0</h3>
-        <h3 id="game-score-btn-ok">Clics validés: 0</h3>
-        <h3 id="game-score-level-ok">Tours validés: 0</h3>
+        <div>
+            <h2 id="game-status">Statut: </h2>
+        </div>
+        <div class="game-score">
+            <h3 id="game-total-score-btn-ok">Total clics validés: 0</h3>
+            <h3 id="game-score-btn-ok">Clics validés: 0</h3>
+            <h3 id="game-score-level-ok">Tours validés: 0</h3> 
+        </div>
 
-        <button class="restart-game">Reset</button>
     </div>
 
     <div class="game-div">
@@ -55,11 +63,15 @@
             <button class="color-btn red-btn" data-musicNote="D4" data-color="red" disabled="true">RE</button>
         </div>
         <div id="ligne2" class="game-div-line">
-            <button class="color-btn yellow-btn" data-musicNote="F4" data-color="yellow" disabled="true">MI</button>
-            <button class="color-btn blue-btn" data-musicNote="E4" data-color="blue" disabled="true">FA</button>
+            <button class="color-btn yellow-btn" data-musicNote="F4" data-color="yellow" disabled="true">FA</button>
+            <button class="color-btn blue-btn" data-musicNote="E4" data-color="blue" disabled="true">MI</button>
         </div>
 
     </div>
+    <div class="div-restart-game">
+        <button class="restart-game-btn restart-game">Relancer</button>
+    </div>
+    
     <!-- Modal GameOver -->
     <div id="game-over-modal" class="modal">
 
